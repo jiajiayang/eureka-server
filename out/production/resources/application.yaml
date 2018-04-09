@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: 8001
+#encrypt:
+#  key: lofy
+logging:
+  level:
+    org.springframework.cloud: DEBUG
+    org.springframework.boot: DEBUG
+
+---
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8002/eureka/,http://localhost:8003/eureka/
+  instance:
+    hostname: eureka1
+server:
+  port: 8001
+spring:
+  profiles: 8001
+
+---
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/,http://localhost:8003/eureka/
+  instance:
+    hostname: eureka2
+server:
+  port: 8002
+spring:
+  profiles: 8002
+
+---
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/,http://localhost:8002/eureka/
+  instance:
+    hostname: eureka3
+server:
+  port: 8003
+spring:
+  profiles: 8003
+
+
